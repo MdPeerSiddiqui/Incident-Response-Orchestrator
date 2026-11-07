@@ -1,0 +1,68 @@
+{
+  "metadata": {
+    "organization": "Sqrock IT Solutions",
+    "suite": "PEER'S Incident Response Orchestrator v2.0",
+    "developer": "Mohammed Peer Siddiqui",
+    "framework": "NIST SP 800-61 Rev.2 (Computer Security Incident Handling Guide)",
+    "generated_at": "2026-11-07T19:43:26.688355",
+    "total_incidents": 1,
+    "total_containment_actions": 3,
+    "total_quarantined_artifacts": 1
+  },
+  "incidents": [
+    {
+      "incident_id": "INC-2026-1107-P1-ATO",
+      "title": "Confirmed Account Takeover & Covert Exfiltration via Auto-Forwarding",
+      "severity": "CRITICAL",
+      "mitre_id": "T1078 / T1110 / T1114.003",
+      "mitre_tactic": "Credential Access -> Persistence -> Exfiltration",
+      "affected_user": "j.smith@sqrock-solutions.com",
+      "attacker_ip": "198.51.100.42",
+      "forward_destination": "attacker-drop@proton.me",
+      "status": "CONTAINED",
+      "created_at": "2026-11-07T19:43:26.687879",
+      "containment_timestamp": "2026-11-07T19:43:26.688339",
+      "executed_actions": [
+        "ACT-LOCK-1794060806",
+        "ACT-EXCH-1794060806",
+        "ACT-FW-1794060806"
+      ],
+      "quarantined_sha256": "87a39a7fb45f56d2e7449a2849d925d18c68201b1ba6b36dc638baceaa0209ac"
+    }
+  ],
+  "containment_audit_log": [
+    {
+      "action_id": "ACT-LOCK-1794060806",
+      "type": "IDENTITY_CONTAINMENT",
+      "target": "j.smith@sqrock-solutions.com",
+      "status": "EXECUTED",
+      "timestamp": "2026-11-07T19:43:26.687888",
+      "details": "Revoked active Kerberos/OAuth tokens; disabled AD account j.smith@sqrock-solutions.com; enforced mandatory password reset flag."
+    },
+    {
+      "action_id": "ACT-EXCH-1794060806",
+      "type": "MAILBOX_CONTAINMENT",
+      "target": "j.smith@sqrock-solutions.com",
+      "status": "EXECUTED",
+      "timestamp": "2026-11-07T19:43:26.687894",
+      "details": "Purged forwarding rule targeting attacker-drop@proton.me; quarantined inbound phishing lures; audited mailbox delegation rights."
+    },
+    {
+      "action_id": "ACT-FW-1794060806",
+      "type": "NETWORK_PERIMETER_BLOCK",
+      "target": "198.51.100.42",
+      "status": "EXECUTED",
+      "timestamp": "2026-11-07T19:43:26.687898",
+      "details": "Injected edge firewall drop rule: iptables -I INPUT -s 198.51.100.42 -j DROP; blacklisted on Cloudflare WAF."
+    }
+  ],
+  "quarantine_ledger": [
+    {
+      "artifact_name": "evidence_phish_lure.eml",
+      "sha256": "87a39a7fb45f56d2e7449a2849d925d18c68201b1ba6b36dc638baceaa0209ac",
+      "quarantine_path": "C:\\Users\\PERSONAL\\Desktop\\Internship Sqrock\\Day14_SE_Incident_Response\\quarantine\\87a39a7fb45f_evidence_phish_lure.eml",
+      "quarantined_at": "2026-11-07T19:43:26.688331",
+      "file_size_bytes": 258
+    }
+  ]
+}
