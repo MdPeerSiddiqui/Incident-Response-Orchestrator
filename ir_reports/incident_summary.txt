@@ -1,7 +1,7 @@
 ================================================================================
     SQROCK IT SOLUTIONS - NIST SP 800-61 INCIDENT RESPONSE AUDIT DOSSIER
 ================================================================================
-Generated At          : 2026-11-07T19:43:26.688355
+Generated At          : 2026-11-07T19:49:43.983027
 Governing Standard    : NIST SP 800-61 Rev.2 (Computer Security Incident Handling Guide)
 Total Incidents       : 1
 Total Actions Executed: 3
@@ -16,21 +16,21 @@ Artifacts Sandboxed   : 1
   MITRE Technique   : T1078 / T1110 / T1114.003 (Credential Access -> Persistence -> Exfiltration)
 
 --- 2. CONTAINMENT ACTIONS CHRONOLOGY ---
-[EXECUTED] ACT-LOCK-1794060806 (IDENTITY_CONTAINMENT)
-  Target: j.smith@sqrock-solutions.com | Timestamp: 2026-11-07T19:43:26.687888
+[EXECUTED] ACT-LOCK-1794061183 (IDENTITY_CONTAINMENT)
+  Target: j.smith@sqrock-solutions.com | Timestamp: 2026-11-07T19:49:43.982508
   Action Details: Revoked active Kerberos/OAuth tokens; disabled AD account j.smith@sqrock-solutions.com; enforced mandatory password reset flag.
 
-[EXECUTED] ACT-EXCH-1794060806 (MAILBOX_CONTAINMENT)
-  Target: j.smith@sqrock-solutions.com | Timestamp: 2026-11-07T19:43:26.687894
+[EXECUTED] ACT-EXCH-1794061183 (MAILBOX_CONTAINMENT)
+  Target: j.smith@sqrock-solutions.com | Timestamp: 2026-11-07T19:49:43.982513
   Action Details: Purged forwarding rule targeting attacker-drop@proton.me; quarantined inbound phishing lures; audited mailbox delegation rights.
 
-[EXECUTED] ACT-FW-1794060806 (NETWORK_PERIMETER_BLOCK)
-  Target: 198.51.100.42 | Timestamp: 2026-11-07T19:43:26.687898
+[EXECUTED] ACT-FW-1794061183 (NETWORK_PERIMETER_BLOCK)
+  Target: 198.51.100.42 | Timestamp: 2026-11-07T19:49:43.982516
   Action Details: Injected edge firewall drop rule: iptables -I INPUT -s 198.51.100.42 -j DROP; blacklisted on Cloudflare WAF.
 
 --- 3. QUARANTINED FORENSIC ARTIFACTS (CHAIN OF CUSTODY) ---
 File Name : evidence_phish_lure.eml
 SHA-256   : 87a39a7fb45f56d2e7449a2849d925d18c68201b1ba6b36dc638baceaa0209ac
 Isolated  : C:\Users\PERSONAL\Desktop\Internship Sqrock\Day14_SE_Incident_Response\quarantine\87a39a7fb45f_evidence_phish_lure.eml
-Timestamp : 2026-11-07T19:43:26.688331
+Timestamp : 2026-11-07T19:49:43.983004
 
